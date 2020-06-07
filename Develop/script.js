@@ -39,34 +39,51 @@ var special = confirm("Would you like to include special characters?")
       prompt("What is another one of your favorite movies (4 of 5)"),
       prompt("What is another one of your favorite movies (5 of 5)")
     ],
-    "firstPetName": prompt("What was the name of your first pet?"),
-    "birthCity": prompt("What city were you born in?"),
-    "favoriteColor": prompt("What is your favorite color?"),
-    "motherMaiden": prompt("What was your mother's madian name?"),
-    "birthYear": prompt("What year were you born?")
+    "favSongs": [
+      prompt("What is one of your favorite songs (1 of 5)"),
+      prompt("What is another one of your favorite songs (2 of 5)"),
+      prompt("What is another one of your favorite songs (3 of 5)"),
+      prompt("What is another one of your favorite songs (4 of 5)"),
+      prompt("What is another one of your favorite songs (5 of 5)") 
+    ],
+    "roleModel": [
+      prompt("Name a favorite role model, athlete, or actor/actress of yours (1 of 5)"),
+      prompt("Name another favorite role model, athlete, or actor/actress of yours (2 of 5)"),
+      prompt("Name another favorite role model, athlete, or actor/actress of yours (3 of 5)"),
+      prompt("Name another favorite role model, athlete, or actor/actress of yours (4 of 5)"),
+      prompt("Name another favorite role model, athlete, or actor/actress of yours (5 of 5)"),
+    ],
+    "WhereDid": [
+      prompt("Where were you born?"),
+      prompt("Where did you graduate high school?"),
+      prompt("Where did you go on your first date?"),
+      prompt("Where was your first job?"),
+      prompt("Where is your favorite place to vacation?")
+    ]
   }
 
-  // while (typeof passwordCriteria.birthYear !== "number" || passwordCriteria.birthYear.length !== 4) {
-  //   passwordCriteria.birthYear = prompt("Invalid Entry: What year were you born?");
-  // }
 
 function consoleArrCheck (arrCheck) {
+  console.log(arrCheck[0]),
   console.log(arrCheck[1]),
   console.log(arrCheck[2]),
   console.log(arrCheck[3]),
-  console.log(arrCheck[4]),
-  console.log(arrCheck[5])
+  console.log(arrCheck[4])
 }
+
+console.log(passwordLength)
+console.log(lowerCase)
+console.log(upperCase)
+console.log(numbers)
+console.log(special)
+console.log("---------------")
 
 consoleArrCheck (passwordCriteria.favFoods)
 consoleArrCheck (passwordCriteria.favShows)
 consoleArrCheck (passwordCriteria.favMovies)
-
-console.log(passwordCriteria.firstPetName)
-console.log(passwordCriteria.birthCity)
-console.log(passwordCriteria.favoriteColor)
-console.log(passwordCriteria.motherMaiden)
-console.log(passwordCriteria.birthYear)
+consoleArrCheck (passwordCriteria.favSongs)
+consoleArrCheck (passwordCriteria.roleModel)
+consoleArrCheck (passwordCriteria.WhereDid)
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
