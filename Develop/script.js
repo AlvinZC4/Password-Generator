@@ -65,7 +65,7 @@ var upperCase = confirm("Would you like to include upper case charactets?")
     ]
   }
 
-// console log all user input Data, a function is used to console log the the indices stored in each array of the object
+// // console log all user input Data, a function is used to console log the the indices stored in each array of the object
 function consoleArrCheck (arrCheck) {
   console.log(arrCheck[0]),
   console.log(arrCheck[1]),
@@ -93,6 +93,38 @@ var randomArry = 0
 var selectArry = ""
 var ranIndex = -1
 var passwordBlock = ""
+var passwordBuild = ""
+var buildLength = passwordBuild.length
+var ranNum1 = 0
+var ranNum2 = 0
+
+function numbersCheck () {
+  if (numbers === false) {
+    var numbersFalse = passwordBlock.replace(/\d+/g, "n");
+    passwordBlock = numbersFalse
+  }
+  else {
+    ranNum1 = Math.floor(Math.random() * 10);
+    ranNum2 = Math.floor(Math.random() * 10);
+    passwordBlock = passwordBlock + ranNum1 + ranNum2;
+  }
+}
+
+function specialCheck () {
+  if (special === false) {
+    var specialFalse = passwordBlock.replace(/[^a-zA-Z0-9]/g, "s");
+    passwordBlock = specialFalse;
+  }
+  else {
+    var specialTrue = passwordBlock.replace(/s/gi, "$");
+    passwordBlock = specialTrue
+    specialTrue = passwordBlock.replace(/l/gi, "!");
+    passwordBlock = specialTrue
+    specialTrue = passwordBlock.replace(/a/gi, "@");
+    passwordBlock = specialTrue
+
+  }
+}
 
 function passBlock () {
   randomArry = Math.floor(Math.random() * 7);
@@ -118,29 +150,46 @@ function passBlock () {
     ranIndex = Math.floor(Math.random() * 5);
 
     passwordBlock = selectArry[ranIndex];
+
+    numbersCheck ();
+    specialCheck ();
+
+    if (upperCase == true && lowerCase == false) {
+      var upperOnly = passwordBlock.toUpperCase();
+      passwordBlock = upperOnly;
+    }
+    if (lowerCase == true && upperCase == false) {
+      var lowerOnly = passwordBlock.toLowerCase();
+      passwordBlock = lowerOnly;
+    }
+    var noSpace = passwordBlock.replace(/\s+/g, '');
+    passwordBlock = noSpace;
+
 }
+
+// console.log(passwordBlock);
 
 // The following loop was used to repeat the passBlock function 50 times to ensure it was working as intended, its now commented out
 
-  // for (var i = 0; i < 50; i++) {
-  //   passBlock();
-  //   console.log("-----------");
-  //   console.log(randomArry);
-  //   console.log(selectArry);
-  //   console.log(ranIndex);
-  //   console.log(passwordBlock);
-  // }
+  for (var i = 0; i < 50; i++) {
+    passBlock();
+    console.log("-----------");
+    console.log(randomArry);
+    console.log(selectArry);
+    console.log(ranIndex);
+    console.log(passwordBlock);
+  }
 
+function createBasePassword () {
+  passwordBuild = passwordBuild + passwordBlock;
+}
 // Function to generate the password
 function generatePassword() {
   // A variable used to build "sections" of the password
-  var passwordBuild = ""
+  passwordBuild = ""
 
   // Use while loop to ensure generated password will be the correct length
-  var buildLength = passwordBuild.length
-
     while (passwordLength > buildLength) {
-      randomArry = Math.floor(Math.random() * 7);
 
     }
 
