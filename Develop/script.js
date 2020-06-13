@@ -21,68 +21,56 @@ while (lowerCase == false && upperCase == false && numbers == false && special =
   var special = confirm("Would you like to include special characters?")
 }
 
-// Arrays That contain each type of character set
+// Arrays That contain each type of character set: lowercase, uppercase, numerical, and special characters
 var lowerChars = "abcdefhhijklmnopqrstuvwxyz".split("");
 var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var numChars = "0123456789".split("");
 var specialChars = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~".split("");
 
-function consoleArrCheck(arrCheck) {
-  console.log(arrCheck),
-  console.log(arrCheck.length)
-}
-
-consoleArrCheck(lowerChars);
-consoleArrCheck(upperChars);
-consoleArrCheck(numChars);
-consoleArrCheck(specialChars);
-
-console.log("Lowercase: " + lowerCase)
-console.log("Uppercase: " + upperCase)
-console.log("Numbers: " + numbers)
-console.log("Special: " + special)
-
+// Create global for use in generating random password
 var randomArry = ""
 var selectArry = ""
 var ranIndex = -1
 var genChar = ""
 var createdPassword = ""
 
+// This is a function that randomly selects an index within an array
 function randomIndex (theArry) {
   ranIndex = Math.floor(Math.random() * theArry.length);
 }
 
+// This is the function that randomly generates the password
 function generatePassword() {
+
+  // The number of times this loop will run is equal the password length the user selected
   for (var i = 0; i < passwordLength; i++) {
+    // The "randomArry" and "ranIndex" global variables are cleared at the start of each cycle of the loop
     randomArry = ""
     ranIndex = -1
 
+    // Randomly generate a number between 0 and 3, one value for each array
     randomArry = Math.floor(Math.random() * 4);
-    // console.log("-----------")
-    // console.log(randomArry)
 
+    // The randomly selected number is used to select a character array
     if (randomArry == 0) {
+        // If the user selected to use lower case characters then a random lower case character from the array is assigned to the "genChar" variable...
       if (lowerCase === true) {
         selectArry = lowerChars;
           randomIndex(selectArry);
         genChar = selectArry[ranIndex];
-        // console.log(selectArry)
-        // console.log(ranIndex)
-        // console.log(genChar)
         createdPassword = createdPassword + genChar
       }
+      // if the user choose not to include lower case characters then no character is generated and the loop is made to run one additional cycle
       else {
         i--
       }
     }
+    // The following three blocks of code function the same as the one above, but for the uppercase, numerical, and special character arrays respectively
     else if (randomArry == 1) {
       if (upperCase === true) {
         selectArry = upperChars;
         randomIndex(selectArry);
         genChar = selectArry[ranIndex];
-        // console.log(selectArry)
-        // console.log(ranIndex)
-        // console.log(genChar)
         createdPassword = createdPassword + genChar
       }
       else {
@@ -94,9 +82,6 @@ function generatePassword() {
         selectArry = numChars;
         randomIndex(selectArry);
         genChar = selectArry[ranIndex];
-        // console.log(selectArry)
-        // console.log(ranIndex)
-        // console.log(genChar)
         createdPassword = createdPassword + genChar
       }
       else {
@@ -108,9 +93,6 @@ function generatePassword() {
         selectArry = specialChars;
         randomIndex(selectArry);
         genChar = selectArry[ranIndex];
-        // console.log(selectArry)
-        // console.log(ranIndex)
-        // console.log(genChar)
         createdPassword = createdPassword + genChar
       }
       else {
@@ -118,16 +100,9 @@ function generatePassword() {
       }
     }
   }
-  console.log(createdPassword)
-  console.log(createdPassword.length)
+  // The function is returned
   return createdPassword;
 }
-
-// generatePassword();
-// console.log(createdPassword)
-// console.log(createdPassword.length)
-// console.log("Password Length: "+ passwordLength)
-
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
