@@ -1,199 +1,133 @@
 // User selects length of password.
 var passwordLength = prompt("Enter how long you would like your password to be.  It must be between 8 and 128 characters")
-  
-  // If password is less than 8 characters or more than 128 characters then user is prompted again
-  while (passwordLength < 8 || passwordLength > 128) {
-    var passwordLength = prompt("Invalid entry!  Password must be between 8 and 128 characters!")
-  }
+
+// If password is less than 8 characters or more than 128 characters then user is prompted again
+while (passwordLength < 8 || passwordLength > 128) {
+  var passwordLength = prompt("Invalid entry!  Password must be between 8 and 128 characters!")
+}
 
 // User decides if password will include lower case, upper case, numerical, and/or special characters in their password
 var lowerCase = confirm("Would you like to include lower case characters?")
 var upperCase = confirm("Would you like to include upper case charactets?")
+var numbers = confirm("Would you like to include numerical characters?")
+var special = confirm("Would you like to include special characters?")
 
-  // User must have lower case and/or upper case characters in their password
-  while (lowerCase == false && upperCase == false) {
-    alert("Your password must include either lower case or upper case characters!")
-    var lowerCase = confirm("Would you like to include lower case characters?")
-    var upperCase = confirm("Would you like to include upper case charactets?")
-  }
+// User must have lower case and/or upper case characters in their password
+while (lowerCase == false && upperCase == false && numbers == false && special == false) {
+  alert("Your password must include either lower case or upper case characters!")
+  var lowerCase = confirm("Would you like to include lower case characters?")
+  var upperCase = confirm("Would you like to include upper case charactets?")
   var numbers = confirm("Would you like to include numerical characters?")
   var special = confirm("Would you like to include special characters?")
-
-  // User is prompted a series of 30 questions. The answers will be used to generate a password
-  var passwordCriteria = {
-    "favFoods": [
-      prompt("What is one of your favorite foods (1 of 5)"),
-      prompt("What is another one of your favorite foods (2 of 5)"),
-      prompt("What is another one of your favorite foods (3 of 5)"),
-      prompt("What is another one of your favorite foods (4 of 5)"),
-      prompt("What is another one of your favorite foods (5 of 5)")
-    ],
-    "favShows": [
-      prompt("What is one of your favorite shows (1 of 5)"),
-      prompt("What is another one of your favorite shows (2 of 5)"),
-      prompt("What is another one of your favorite shows (3 of 5)"),
-      prompt("What is another one of your favorite shows (4 of 5)"),
-      prompt("What is another one of your favorite shows (5 of 5)")
-    ],
-    "favMovies": [
-      prompt("What is one of your favorite movies (1 of 5)"),
-      prompt("What is another one of your favorite movies (2 of 5)"),
-      prompt("What is another one of your favorite movies (3 of 5)"),
-      prompt("What is another one of your favorite movies (4 of 5)"),
-      prompt("What is another one of your favorite movies (5 of 5)")
-    ],
-    "favSongs": [
-      prompt("What is one of your favorite songs (1 of 5)"),
-      prompt("What is another one of your favorite songs (2 of 5)"),
-      prompt("What is another one of your favorite songs (3 of 5)"),
-      prompt("What is another one of your favorite songs (4 of 5)"),
-      prompt("What is another one of your favorite songs (5 of 5)") 
-    ],
-    "roleModel": [
-      prompt("Name a favorite role model, athlete, or actor/actress of yours (1 of 5)"),
-      prompt("Name another favorite role model, athlete, or actor/actress of yours (2 of 5)"),
-      prompt("Name another favorite role model, athlete, or actor/actress of yours (3 of 5)"),
-      prompt("Name another favorite role model, athlete, or actor/actress of yours (4 of 5)"),
-      prompt("Name another favorite role model, athlete, or actor/actress of yours (5 of 5)"),
-    ],
-    "whereDid": [
-      prompt("Where were you born?"),
-      prompt("Where did you graduate high school?"),
-      prompt("Where did you go on your first date?"),
-      prompt("Where was your first job?"),
-      prompt("Where is your favorite place to vacation?")
-    ]
-  }
-
-// // console log all user input Data, a function is used to console log the the indices stored in each array of the object
-function consoleArrCheck (arrCheck) {
-  console.log(arrCheck[0]),
-  console.log(arrCheck[1]),
-  console.log(arrCheck[2]),
-  console.log(arrCheck[3]),
-  console.log(arrCheck[4])
 }
 
-console.log(passwordLength)
-console.log(lowerCase)
-console.log(upperCase)
-console.log(numbers)
-console.log(special)
+// Arrays That contain each type of character set
+var lowerChars = "abcdefhhijklmnopqrstuvwxyz".split("");
+var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+var numChars = "0123456789".split("");
+var specialChars = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~".split("");
 
-console.log("---------------")
+function consoleArrCheck(arrCheck) {
+  console.log(arrCheck),
+  console.log(arrCheck.length)
+}
 
-consoleArrCheck (passwordCriteria.favFoods)
-consoleArrCheck (passwordCriteria.favShows)
-consoleArrCheck (passwordCriteria.favMovies)
-consoleArrCheck (passwordCriteria.favSongs)
-consoleArrCheck (passwordCriteria.roleModel)
-consoleArrCheck (passwordCriteria.whereDid)
+consoleArrCheck(lowerChars);
+consoleArrCheck(upperChars);
+consoleArrCheck(numChars);
+consoleArrCheck(specialChars);
 
-var randomArry = 0
+console.log("Lowercase: " + lowerCase)
+console.log("Uppercase: " + upperCase)
+console.log("Numbers: " + numbers)
+console.log("Special: " + special)
+
+var randomArry = ""
 var selectArry = ""
 var ranIndex = -1
-var passwordBlock = ""
-var passwordBuild = ""
-var buildLength = passwordBuild.length
-var ranNum1 = 0
-var ranNum2 = 0
+var genChar = ""
+var createdPassword = ""
 
-function numbersCheck () {
-  if (numbers === false) {
-    var numbersFalse = passwordBlock.replace(/\d+/g, "n");
-    passwordBlock = numbersFalse
-  }
-  else {
-    ranNum1 = Math.floor(Math.random() * 10);
-    ranNum2 = Math.floor(Math.random() * 10);
-    passwordBlock = passwordBlock + ranNum1 + ranNum2;
-  }
+function randomIndex (theArry) {
+  ranIndex = Math.floor(Math.random() * theArry.length);
 }
 
-function specialCheck () {
-  if (special === false) {
-    var specialFalse = passwordBlock.replace(/[^a-zA-Z0-9]/g, "s");
-    passwordBlock = specialFalse;
-  }
-  else {
-    var specialTrue = passwordBlock.replace(/s/gi, "$");
-    passwordBlock = specialTrue
-    specialTrue = passwordBlock.replace(/l/gi, "!");
-    passwordBlock = specialTrue
-    specialTrue = passwordBlock.replace(/a/gi, "@");
-    passwordBlock = specialTrue
-
-  }
-}
-
-function passBlock () {
-  randomArry = Math.floor(Math.random() * 7);
-    
-  if (randomArry == 1) {
-      selectArry = passwordCriteria.favFoods;
-  }
-  else if (randomArry == 2) {
-    selectArry = passwordCriteria.favShows;
-  }
-  else if (randomArry == 3) {
-    selectArry = passwordCriteria.favMovies;
-  }
-  else if (randomArry == 4) {
-    selectArry = passwordCriteria.favSongs;
-  }
-  else if (randomArry == 5) {
-    selectArry = passwordCriteria.roleModel;
-  }
-  else {
-    selectArry = passwordCriteria.whereDid;
-  }
-    ranIndex = Math.floor(Math.random() * 5);
-
-    passwordBlock = selectArry[ranIndex];
-
-    numbersCheck ();
-    specialCheck ();
-
-    if (upperCase == true && lowerCase == false) {
-      var upperOnly = passwordBlock.toUpperCase();
-      passwordBlock = upperOnly;
-    }
-    if (lowerCase == true && upperCase == false) {
-      var lowerOnly = passwordBlock.toLowerCase();
-      passwordBlock = lowerOnly;
-    }
-    var noSpace = passwordBlock.replace(/\s+/g, '');
-    passwordBlock = noSpace;
-
-}
-
-// console.log(passwordBlock);
-
-// The following loop was used to repeat the passBlock function 50 times to ensure it was working as intended, its now commented out
-
-  for (var i = 0; i < 50; i++) {
-    passBlock();
-    console.log("-----------");
-    console.log(randomArry);
-    console.log(selectArry);
-    console.log(ranIndex);
-    console.log(passwordBlock);
-  }
-
-function createBasePassword () {
-  passwordBuild = passwordBuild + passwordBlock;
-}
-// Function to generate the password
 function generatePassword() {
-  // A variable used to build "sections" of the password
-  passwordBuild = ""
+  for (var i = 0; i < passwordLength; i++) {
+    randomArry = ""
+    ranIndex = -1
 
-  // Use while loop to ensure generated password will be the correct length
-    while (passwordLength > buildLength) {
+    randomArry = Math.floor(Math.random() * 4);
+    // console.log("-----------")
+    // console.log(randomArry)
 
+    if (randomArry == 0) {
+      if (lowerCase === true) {
+        selectArry = lowerChars;
+          randomIndex(selectArry);
+        genChar = selectArry[ranIndex];
+        // console.log(selectArry)
+        // console.log(ranIndex)
+        // console.log(genChar)
+        createdPassword = createdPassword + genChar
+      }
+      else {
+        i--
+      }
     }
-
+    else if (randomArry == 1) {
+      if (upperCase === true) {
+        selectArry = upperChars;
+        randomIndex(selectArry);
+        genChar = selectArry[ranIndex];
+        // console.log(selectArry)
+        // console.log(ranIndex)
+        // console.log(genChar)
+        createdPassword = createdPassword + genChar
+      }
+      else {
+        i--
+      }
+    }
+    else if (randomArry == 2) {
+      if (numbers === true) {
+        selectArry = numChars;
+        randomIndex(selectArry);
+        genChar = selectArry[ranIndex];
+        // console.log(selectArry)
+        // console.log(ranIndex)
+        // console.log(genChar)
+        createdPassword = createdPassword + genChar
+      }
+      else {
+        i--
+      }
+    }
+    else {
+      if (special === true) {
+        selectArry = specialChars;
+        randomIndex(selectArry);
+        genChar = selectArry[ranIndex];
+        // console.log(selectArry)
+        // console.log(ranIndex)
+        // console.log(genChar)
+        createdPassword = createdPassword + genChar
+      }
+      else {
+        i--
+      }
+    }
+  }
+  console.log(createdPassword)
+  console.log(createdPassword.length)
+  return createdPassword;
 }
+
+// generatePassword();
+// console.log(createdPassword)
+// console.log(createdPassword.length)
+// console.log("Password Length: "+ passwordLength)
+
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -209,3 +143,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
